@@ -186,6 +186,28 @@ body {
   height: 100%;
   color: #666;
 }
+
+.eland-alerts-content {
+padding: 15px;
+}
+.eland-alerts-container {
+background-color: white;
+border: 1px solid #ddd;
+}
+.eland-alert-tabs {
+display: flex;
+background-color: #f5f5f5;
+border-bottom: 1px solid #ddd;
+}
+.eland-alert-tab {
+padding: 8px 15px;
+font-size: 14px;
+border-right: 1px solid #ddd;
+}
+.eland-alert-content {
+min-height: 200px;
+padding: 15px;
+}
 /* Footer */
 .footer {
   background-color: #4cb4e7;
@@ -487,6 +509,128 @@ document.addEventListener("DOMContentLoaded", () => {
   const myDocs = [
     { id: 1, name: "My Application Summary.pdf" }
   ];
+
+function showNotifications() {
+// Create and show notifications panel
+const modal = document.createElement("div");
+modal.className = "modal";
+modal.innerHTML = `
+<div class="modal-content">
+<div class="modal-header">
+<h2><i class="fas fa-bell"></i> Notifications</h2>
+<button class="close-button"
+onclick="this.closest('.modal').remove()">×</button>
+</div>
+<div class="modal-body">
+<div class="notifications-panel">
+<div class="notification-list">
+<div class="notification-item">
+<i class="fas fa-file-alt"></i>
+<div class="notification-content">
+<div class="notification-title">New Application Received</div>
+<div class="notification-time">2 minutes ago</div>
+</div>
+</div>
+<div class="notification-item">
+<i class="fas fa-check-circle"></i>
+<div class="notification-content">
+<div class="notification-title">Document Verification Required</div>
+<div class="notification-time">1 hour ago</div>
+</div>
+</div>
+<!-- Add more notification items as needed -->
+</div>
+</div>
+</div>
+</div>
+`;
+document.body.appendChild(modal);
+}
+
+function showTasks() {
+// Create and show tasks panel
+const modal = document.createElement("div");
+modal.className = "modal";
+modal.innerHTML = `
+<div class="modal-content">
+<div class="modal-header">
+<h2><i class="fas fa-tasks"></i> Tasks</h2>
+<button class="close-button"
+onclick="this.closest('.modal').remove()">×</button>
+</div>
+<div class="modal-body">
+<div class="task-list">
+<div class="task-item">
+<input type="checkbox" id="task1">
+<label for="task1">Review pending applications</label>
+<span class="task-date">Today</span>
+</div>
+<div class="task-item">
+<input type="checkbox" id="task2">
+<label for="task2">Verify submitted documents</label>
+<span class="task-date">Today</span>
+</div>
+<div class="task-item">
+<input type="checkbox" id="task3">
+<label for="task3">Generate monthly report</label>
+<span class="task-date">Tomorrow</span>
+</div>
+<!-- Add more task items as needed -->
+</div>
+</div>
+</div>
+`;
+document.body.appendChild(modal);
+}
+
+function showProfile() {
+// Create and show profile panel
+const modal = document.createElement("div");
+modal.className = "modal";
+modal.innerHTML = `
+<div class="modal-content">
+<div class="modal-header">
+<h2><i class="fas fa-user"></i> Profile</h2>
+<button class="close-button"
+onclick="this.closest('.modal').remove()">×</button>
+</div>
+<div class="modal-body">
+<div class="profile-panel">
+<div class="profile-content">
+<div class="profile-info">
+<div class="profile-avatar">
+<i class="fas fa-user-tie"></i>
+</div>
+<h4>Clerk Name</h4>
+<p>IDTA Office</p>
+</div>
+<div class="profile-details">
+<div class="detail-item">
+<label>Employee ID</label>
+<input type="text" value="CLK001" readonly>
+</div>
+<div class="detail-item">
+<label>Email</label>
+<input type="email" value="clerk@idta.gov.in" class="editable">
+</div>
+<div class="detail-item">
+<label>Phone</label>
+<input type="tel" value="+91 9876543210" class="editable">
+</div>
+<div class="detail-item">
+<label>Department</label>
+<input type="text" value="Land Records" readonly>
+</div>
+</div>
+<button class="edit-profile-button">
+<i class="fas fa-edit"></i> Edit Profile
+</button>
+</div>
+</div>
+</div>
+</div>
+`;
+document.body.appendChild(modal);
 
   function renderNoticeBoardTab() {
     const container = document.getElementById("noticeBoardContent");
@@ -905,23 +1049,24 @@ function handleLogout() {
 
 <!-- Top Navigation -->
 <div class="top-nav">
-  <div class="top-nav-item" onclick="showProfile()">
-    <i class="fas fa-user-circle"></i>
-    <span>Set Status</span>
-  </div>
-  <div class="top-nav-item" onclick="showNotifications()">
-    <i class="fas fa-bell"></i>
-    <span>Alerts</span>
-  </div>
-  <div class="top-nav-item" onclick="showProfile()">
-    <i class="fas fa-cog"></i>
-    <span>Settings</span>
-  </div>
-  <div class="top-nav-item" onclick="handleLogout()">
-    <i class="fas fa-sign-out-alt"></i>
-    <span>Logout</span>
-  </div>
+<div class="top-nav-item" onclick="showProfile()">
+<i class="fas fa-user-circle"></i>
+<span>Set Status</span>
 </div>
+<div class="top-nav-item" onclick="showNotifications()">
+<i class="fas fa-bell"></i>
+<span>Alerts</span>
+</div>
+<div class="top-nav-item" onclick="showProfile()">
+<i class="fas fa-cog"></i>
+<span>Settings</span>
+</div>
+<div class="top-nav-item" onclick="handleLogout()">
+<i class="fas fa-sign-out-alt"></i>
+<span>Logout</span>
+</div>
+</div>
+
 
 <!-- Main Container -->
 <div class="main-container">
